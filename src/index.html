@@ -1,12 +1,12 @@
 <html>
     <head>
         <title>Cam Interface</title>
-        <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+        <script src="htmx.min.js"></script>
         <script>
             function currentTimestamp() {
                 const now = new Date();
                 const offset = now.getTimezoneOffset() * 60 * 1000;
-                return Date.now() - offset;
+                return (Date.now() - offset) * 1000000;
             }
         </script>
     </head>
