@@ -1,0 +1,13 @@
+[Unit]
+Description=Cam service
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=/usr/bin/env python3 /home/pi/Server.py --directory /home/pi
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Cam Interface</title>
+        <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+        <script>
+            function currentTimestamp() {
+                const now = new Date();
+                const offset = now.getTimezoneOffset() * 60 * 1000;
+                return Date.now() - offset;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Cam Interface</h1>
+        <img src="stream.mjpg" width="640" height="480" />
+    </body>
+    <div id="status">
+        <div hx-get="/status" hx-trigger="load" hx-target="#status">Status</div>
+    </div>
+</html>
