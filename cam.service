@@ -6,8 +6,8 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=pi
-ExecStart=/usr/bin/env python3 /home/pi/cam/src/main.py
+User=_USER_
+ExecStart=/usr/bin/env python3 _PATH_/src/main.py
 
 [Install]
 WantedBy=multi-user.target
