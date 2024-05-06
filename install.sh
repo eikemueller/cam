@@ -33,8 +33,16 @@ cd cam
 sudo -u "$CAM_USER" sed -i "s/_USER_/$CAM_USER/g" cam.service
 sudo -u "$CAM_USER" sed -i "s#_PATH_#$PWD#g" cam.service
 install -CDm644 cam.service /lib/systemd/system/cam.service
+sudo -u "$CAM_USER" mkdir src/tmp
+sudo -u "$CAM_USER" mkdir src/recordings
 cd ..
+
+echo "Adding over voltage patch"
+echo -e "[all]\nover_voltage=4\nforce_turbo=1\n" >> /boot/config.txt
 
 echo "Activating services"
 systemctl enable create_ap
 systemctl enable cam
+
+echo "Rebooting"
+reboot
