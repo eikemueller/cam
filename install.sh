@@ -17,21 +17,21 @@ HOTSPOT_PW="$2"
 echo "Setup with CAM_USER=$CAM_USER, HOTSPOT_SSID=$HOTSPOT_SSID, HOTSPOT_PW=$HOTSPOT_PW"
 
 echo "Installing dependecies"
-apt-get -y install git util-linux procps hostapd iproute2 iw dnsmasq iptables python3-opencv
+apt-get -y install git util-linux procps hostapd iproute2 iw dnsmasq iptables python3-opencv python3-picamera2
 
 echo "Installing create_ap"
-git clone https://github.com/lakinduakash/linux-wifi-hotspot
+sudo -u "$CAM_USER" git clone https://github.com/lakinduakash/linux-wifi-hotspot
 cd linux-wifi-hotspot/src/scripts
-sed -i 's/ExecStart=/PreExecStart=sleep 30\nExecStart=/g' create_ap.service
+sudo -u "$CAM_USER" sed -i 's/ExecStart=/PreExecStart=sleep 30\nExecStart=/g' create_ap.service
 make install-cli-only
 create_ap -n wlan0 "$HOTSPOT_SSID" "$HOTSPOT_PW" --mkconfig /etc/create_ap.conf
 cd ../../..
 
 echo "Installing cam"
-git clone https://github.com/eikemueller/cam.git
+sudo -u "$CAM_USER" git clone https://github.com/eikemueller/cam.git
 cd cam
-sed -i "s/_USER_/$CAM_USER/g" cam.service
-sed -i "s#_PATH_#$PWD#g" cam.service
+sudo -u "$CAM_USER" sed -i "s/_USER_/$CAM_USER/g" cam.service
+sudo -u "$CAM_USER" sed -i "s#_PATH_#$PWD#g" cam.service
 install -CDm644 cam.service /lib/systemd/system/cam.service
 cd ..
 
