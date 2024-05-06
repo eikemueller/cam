@@ -38,7 +38,7 @@ sudo -u "$CAM_USER" mkdir src/recordings
 cd ..
 
 echo "Adding over voltage patch"
-echo -e "[all]\nover_voltage=4\nforce_turbo=1\n" >> /boot/config.txt
+echo -e "\n\n[all]\nover_voltage=4\nforce_turbo=1\n" >> /boot/config.txt
 
 echo "Activating services"
 systemctl enable create_ap
