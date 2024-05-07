@@ -13,7 +13,7 @@ The format for the schedule is
 HH:[MM]-HH:[MM](,HH:[MM]-HH:[MM])*
 ```
 
-Examples are: `0-24`, `8-20`, `8:30-19-24` or multiple ranges like `8-10:30,16:30-20`.
+Examples are: `0-24`, `8-20`, `8:30-19:24` or multiple ranges like `8-10:30,16:30-20`.
 
 ## Recordings
 
