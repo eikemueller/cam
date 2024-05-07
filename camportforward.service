@@ -1,0 +1,14 @@
+[Unit]
+Description=Cam service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=iptables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-ports 8000
+
+[Install]
+WantedBy=multi-user.target

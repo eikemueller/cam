@@ -33,6 +33,7 @@ cd cam
 sudo -u "$CAM_USER" sed -i "s/_USER_/$CAM_USER/g" cam.service
 sudo -u "$CAM_USER" sed -i "s#_PATH_#$PWD#g" cam.service
 install -CDm644 cam.service /lib/systemd/system/cam.service
+install -CDm644 camportforward.service /lib/systemd/system/camportforward.service
 sudo -u "$CAM_USER" mkdir src/tmp
 sudo -u "$CAM_USER" mkdir src/recordings
 cd ..
@@ -43,6 +44,7 @@ echo -e "\n\n[all]\nover_voltage=4\nforce_turbo=1\n" >> /boot/config.txt
 echo "Activating services"
 systemctl enable create_ap
 systemctl enable cam
+systemctl enable camportforward
 
 echo "Rebooting"
 reboot
